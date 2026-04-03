@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+# Optional: Add your app here if you want to completely run via Docker later
