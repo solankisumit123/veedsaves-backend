@@ -239,13 +239,21 @@ class DownloaderService {
         noCheckCertificate: true,
         noWarnings: true,
         preferFreeFormats: true,
-        youtubeSkipDashManifest: true,
         noPlaylist: true,
         rmCacheDir: true,
         socketTimeout: 30,
         userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-        referer: 'https://www.youtube.com/',
-        addHeader: [
+        referer: isInstagram ? 'https://www.instagram.com/' : (isTwitter ? 'https://x.com/' : 'https://www.google.com/'),
+        addHeader: isInstagram ? [
+          'accept: */*',
+          'accept-language: en-US,en;q=0.9',
+          'origin: https://www.instagram.com',
+          'referer: https://www.instagram.com/',
+          'sec-fetch-dest: empty',
+          'sec-fetch-mode: cors',
+          'sec-fetch-site: same-origin',
+          'x-ig-app-id: 936619743392459'
+        ] : [
           'referer: https://www.youtube.com/',
           'origin: https://www.youtube.com/'
         ]
