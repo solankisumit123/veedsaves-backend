@@ -236,14 +236,19 @@ class DownloaderService {
       
       const dlOptions = {
         dumpSingleJson: true,
-        noWarnings: true,
         noCheckCertificate: true,
-        addHeader: this.getHeaders(url),
-        userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-        referer: isTwitter ? 'https://x.com/' : (isInstagram ? 'https://www.instagram.com/' : 'https://www.google.com/'),
+        noWarnings: true,
+        preferFreeFormats: true,
+        youtubeSkipDashManifest: true,
+        noPlaylist: true,
         rmCacheDir: true,
         socketTimeout: 30,
-        format: 'best',
+        userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+        referer: 'https://www.youtube.com/',
+        addHeader: [
+          'referer: https://www.youtube.com/',
+          'origin: https://www.youtube.com/'
+        ]
       };
 
       // Check for cookies.txt in the backend root
