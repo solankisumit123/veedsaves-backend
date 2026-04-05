@@ -511,7 +511,31 @@ class DownloaderService {
       });
 
       subprocess.on('close', (code) => {
-        if (code === 0) resolve(filename);
+        if (code === 0) {
+          // Check if the file exists with the expected name, or if it was merged to .mp4
+          if (fs.existsSync(outPath)) {
+            resolve(filename);
+          } else {
+            // Check for potential merged filename if ext was webm/mkv/etc
+            const mp4Path = outPath.replace(/\.[^/.]+$/, ".mp4");
+            if (fs.existsSync(mp4Path)) {
+              resolve(`${jobId}.mp4`);
+            } else {
+              // Final fallback: find any file starting with jobId in downloadsDir
+              try {
+                const files = fs.readdirSync(downloadsDir);
+                const found = files.find(f => f.startsWith(jobId));
+                if (found) {
+                  resolve(found);
+                } else {
+                  resolve(filename); // Last resort fallback
+                }
+              } catch (e) {
+                resolve(filename);
+              }
+            }
+          }
+        }
         else reject(new Error(`yt-dlp exited with code ${code}`));
       });
 

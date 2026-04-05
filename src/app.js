@@ -12,6 +12,7 @@ const apiLimiter = require('./middlewares/rateLimit.middleware');
 const app = express();
 
 // Middlewares
+app.set('trust proxy', true);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
