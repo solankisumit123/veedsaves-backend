@@ -48,8 +48,8 @@ class DownloadController {
       let errorMsg = err.message || "Failed to parse video. Check URL.";
       
       // Hinglish translations for common yt-dlp errors
-      if (errorMsg.includes("You need to log in to access this content") || errorMsg.includes("login")) {
-        errorMsg = "Is video ya story ko download karne ke liye Login zaroori hai. Kripya cookies.txt file add karein.";
+      if (errorMsg.includes("You need to log in to access this content") || errorMsg.includes("Sign in to confirm you") || errorMsg.includes("login")) {
+        errorMsg = "YouTube ya Instagram ne request block kar di hai. Ho sakta hai cookies expire ho gayi hon ya login session khatam ho gaya ho. Kripya naye cookies add karein.";
       } else if (errorMsg.includes("Private video")) {
         errorMsg = "Yeh video private hai. Isay download nahi kiya ja sakta.";
       } else if (errorMsg.includes("Video unavailable")) {
