@@ -243,6 +243,7 @@ class DownloaderService {
         rmCacheDir: true,
         socketTimeout: 30,
         userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+        extractorArgs: 'youtube:player-client=ios',
         referer: isInstagram ? 'https://www.instagram.com/' : (isTwitter ? 'https://x.com/' : 'https://www.google.com/'),
         addHeader: isInstagram ? [
           'accept: */*',
@@ -473,6 +474,7 @@ class DownloaderService {
       noCheckCertificate: true,
       addHeader: this.getHeaders(url),
       userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+      extractorArgs: 'youtube:player-client=ios',
       referer: isTwitter ? 'https://x.com/' : (isInstagram ? 'https://www.instagram.com/' : 'https://www.google.com/'),
       rmCacheDir: true,
       hlsUseMpegts: true,
