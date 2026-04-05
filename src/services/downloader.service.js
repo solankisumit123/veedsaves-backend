@@ -262,9 +262,13 @@ class DownloaderService {
 
       // Check for cookies.txt in the backend root
       const cookiesPath = path.join(__dirname, '../../cookies.txt');
+      console.log(`[Downloader] Checking for cookies at: ${cookiesPath}`);
       if (fs.existsSync(cookiesPath)) {
-        console.log(`[Downloader] Using cookies from: ${cookiesPath}`);
+        const stats = fs.statSync(cookiesPath);
+        console.log(`[Downloader] Cookies file found! Size: ${stats.size} bytes`);
         dlOptions.cookies = cookiesPath;
+      } else {
+        console.warn(`[Downloader] Cookies file NOT FOUND at: ${cookiesPath}`);
       }
 
       // Instagram specific logic
@@ -485,8 +489,11 @@ class DownloaderService {
     // Check for cookies.txt in the backend root for downloads too
     const cookiesPath = path.join(__dirname, '../../cookies.txt');
     if (fs.existsSync(cookiesPath)) {
-      console.log(`[Downloader] Using cookies for download from: ${cookiesPath}`);
+      const stats = fs.statSync(cookiesPath);
+      console.log(`[Downloader Download] Using cookies file (${stats.size} bytes)`);
       dlOptions.cookies = cookiesPath;
+    } else {
+      console.warn(`[Downloader Download] Cookies file NOT FOUND at: ${cookiesPath}`);
     }
     
     if (ffmpegPath) {
