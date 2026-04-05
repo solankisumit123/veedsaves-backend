@@ -28,6 +28,9 @@ app.use('/downloads', express.static(path.join(__dirname, '../downloads'), {
 }));
 
 // Register Routes
+app.get('/', (req, res) => {
+  res.json({ status: 1, msg: "veedsaves Backend API is running!" });
+});
 app.use('/api', apiLimiter, downloadRoutes);
 app.use('/api', apiLimiter, statusRoutes);
 app.use('/api/users', userRoutes);
